@@ -1,23 +1,49 @@
+type Person = {
+    name: string,
+    age: number,
+    phone: number
+}
+
+
 interface Person {
     name: string,
     age: number,
-    greet(phrase: string): void;
+    phone: number
 }
 
-class Employee implements Person {
+// both type and interface are same only interface is used to implement classes
+// in most cases we uses interfaces
+
+
+
+// Example
+type StringOrNumber = string | number | boolean;  // types let you define multiple types
+
+function printId(id: StringOrNumber) {
+  console.log(`ID: ${id}`);
+}
+
+printId(101); // ID: 101
+printId("202"); // ID: 202
+printId(true);
+
+
+// we can also create a type that has every property of multiple types/ interfaces
+type Employee = {
     name: string;
-    age: number;
-
-    constructor(n:string, a:number){
-        this.name = n;
-        this.age = a;
-    }
-
-    greet(phrase: string): void {
-        console.log(`${phrase} ${this.name}`)
-    }
-}
-
-const e = new Employee("Prabhakar", 22);
-// console.log(e.name); 
-e.greet("Hello there")
+    startDate: Date;
+  };
+  
+  type Manager = {
+    name: string;
+    department: string;
+  };
+  
+  type TeamLead = Employee & Manager;
+  
+  const teamLead: TeamLead = {
+    name: "harkirat",
+    startDate: new Date(),
+    department: "Software developer"
+  };
+  
