@@ -1,20 +1,22 @@
- function sum(a: number, b: number): number  //we donot need to add number expilicity function automatic understand it as return number due to Type inference
- {     
-   return a+b;
- };
-
-const value = sum(1,2);
-console.log(value);
-
-function isLegal(age: number){
-    if(age>18){
-        return true;
-    }
-    else{
-        return false;
-    }
+function runafter1sec(fn: ()=> void){
+    setTimeout(fn,5000);
 }
 
-// const x = isLegal(18);
-const x: boolean = isLegal(18); // we donot need to add bollean expilicity x automatic understand it as boolean due to Type inference
+runafter1sec(function(){
+    console.log("Hello")
+})
 
+
+
+
+let flag: number = 1;
+function count(fn: (flag: number)=> void, flag: number){
+   setTimeout(()=> fn(flag), 3000);
+}
+
+function update(flag: number){
+    flag += 1;
+    console.log(flag);
+}
+
+count(update, flag);
