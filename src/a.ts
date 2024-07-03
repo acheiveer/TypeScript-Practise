@@ -1,12 +1,14 @@
 interface User {
-  name:string;
-  age: number;
-
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
 }
 
-function sumOfage(user1:User, user2:User){
-  return user1.age + user2.age;
-}
+// For a profile display, only pick `name` and `email`
+type UserProfile = Pick<User, 'name' | 'email'>;
 
-const age = sumOfage({name:'Taro',age:20},{name:'jiro',age:30});
-console.log(age);
+const displayUserProfile = (user: UserProfile) => {
+  console.log(`Name: ${user.name}, Email: ${user.email}`);
+};
+displayUserProfile({name:'prabhakar',email:'xyz@ymail.com'});
