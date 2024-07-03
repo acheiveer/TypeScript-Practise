@@ -1,18 +1,11 @@
-interface User {
-  id: string;
-  name: string;
-  age: string;
-  email: string;
-  password: string;
+interface Config {
+  readonly endpoint: string;     // making the endpoint and apikey constant so that it cannot be changed further
+  readonly apiKey: string;
+}
+
+const config: Readonly<Config> = {
+  endpoint: 'https://api.example.com',
+  apiKey: 'abcdef123456',
 };
 
-type UpdateProps = Pick<User, 'name' | 'age' | 'email'>
-
-type UpdatePropsOptional = Partial<UpdateProps>
-
-function updateUser(updatedProps: UpdatePropsOptional) {
-  const {name,email}= updatedProps;
-  // hit the database tp update the user
-  console.log(`Name: ${name}, Email: ${email}`);
-}
-updateUser({name:'prabhakar',email:'xyz@ymail.com'})
+// config.apiKey = 'newkey'; // Error: Cannot assign to 'apiKey' because it is a read-only property.
